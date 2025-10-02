@@ -1,18 +1,17 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 import java.util.Arrays;
+
 public class ArraySort {
     public static void main (String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("nhap mang");
-        String line = sc.nextLine();
+        String line = JOptionPane.showInputDialog("Nhập mảng:");
         String[] parts = line.split(" ");
         int[] arr = new int[parts.length];
-        for (int i = 0; i <= parts.length - 1; i++){
+        for (int i = 0; i < parts.length; i++){
             arr[i] = Integer.parseInt(parts[i]);
         }
-        sc.close();    
-        for (int i = 0; i <= parts.length - 2; i++){
-            for (int k = 0; k <= parts.length - 2; k++){
+
+        for (int i = 0; i < parts.length - 1; i++){
+            for (int k = 0; k < parts.length - 1; k++){
                 int h = arr[k];
                 int g = arr[k + 1];
                 if (h > g){
@@ -21,14 +20,19 @@ public class ArraySort {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+
+        StringBuilder result = new StringBuilder();
+        result.append("Mảng sau khi sắp xếp: ").append(Arrays.toString(arr)).append("\n");
+
         int sum = 0;
-        for (int i = 0; i <= arr.length - 1; i++){
+        for (int i = 0; i < arr.length; i++){
             sum += arr[i];
         }
-        System.out.println(sum);
-        double avg = (double) sum / arr.length;
-        System.out.printf("Trung bình = %.2f%n", avg);
+        result.append("Tổng = ").append(sum).append("\n");
 
+        double avg = (double) sum / arr.length;
+        result.append(String.format("Trung bình = %.2f", avg));
+
+        JOptionPane.showMessageDialog(null, result.toString());
     }
 }
