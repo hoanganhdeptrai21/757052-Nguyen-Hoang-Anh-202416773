@@ -1,0 +1,5 @@
+1. If a user clicks Cancel in the Save and Launch dialog 
+- THe launch process is aborted -> The program will not run
+- No files are saved automatically.
+--> Cancel = Do nothing
+2. If you want to limit the dialog to fewer options such as only Yes or No, you can use JOptionPane(Swing) - a library of Java instead of the default IDE dialog.
