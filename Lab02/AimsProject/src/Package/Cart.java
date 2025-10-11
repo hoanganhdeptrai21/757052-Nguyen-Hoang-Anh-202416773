@@ -18,7 +18,7 @@ public class Cart {
     }
     public void removeDigitalVideoDisc(DigitalVideoDisc disc){
         boolean found = false;
-        for (int index = 0; index <= count - 1; index++ ){
+        for (int index = 0; index <= count; index++ ){
             if (itemsOrdered[index] == disc){
                 itemsOrdered[index] = null;
                 System.out.println("The disc has been removed");
