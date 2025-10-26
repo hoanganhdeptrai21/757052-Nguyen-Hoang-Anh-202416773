@@ -1,6 +1,9 @@
-package Package;
+package hust.soict.dsai.aims;
 
 import java.util.*;
+
+import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 
 public class Aims {
     static final Scanner sc = new Scanner(System.in);
