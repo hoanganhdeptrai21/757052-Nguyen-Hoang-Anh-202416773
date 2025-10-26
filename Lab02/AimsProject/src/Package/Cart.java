@@ -40,13 +40,13 @@ public class Cart {
     }
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
     boolean found = false;
-    for (int index = 0; index < count; index++) {
+    for (int index = 0; index < qtyOrdered; index++) {
         if (itemsOrdered[index] != null &&
             itemsOrdered[index].getTitle().equalsIgnoreCase(disc.getTitle())) {
-            for (int j = index + 1; j < count; j++) {
+            for (int j = index + 1; j < qtyOrdered; j++) {
                 itemsOrdered[j - 1] = itemsOrdered[j];
             }
-            itemsOrdered[--count] = null;
+            itemsOrdered[--qtyOrdered] = null;
             System.out.println("The disc has been removed");
             found = true;
             break;
@@ -58,7 +58,7 @@ public class Cart {
 }
     public float totalCost(){
         float sum = 0;
-        for (int i = 0; i < count; i++){
+        for (int i = 0; i < qtyOrdered; i++){
         	if (itemsOrdered[i] != null) {
         		sum += itemsOrdered[i].getCost();
         }
