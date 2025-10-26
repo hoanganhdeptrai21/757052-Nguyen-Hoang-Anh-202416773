@@ -60,4 +60,23 @@ public class DigitalVideoDisc {
     public void setTitle(String title) {
         this.title = title;
     }
+    public String toString() {
+        String safeTitle = (title == null ? "" : title);
+        String safeCategory = (category == null ? "" : category);
+        String safeDirector = (director == null ? "" : director);
+        String len = (length > 0 ? String.valueOf(length) : "");
+        return String.format("DVD - %s - %s - %s - %s: %.2f $",
+                safeTitle, safeCategory, safeDirector, len, cost);
+    }
+    public boolean isMatch(String query) {
+        if (query == null || query.isBlank() || this.title == null) return false;
+        String t = this.title.toLowerCase();
+        for (String word : query.toLowerCase().trim().split("\\s+")) {
+            if (!t.contains(word)) return false;
+        }
+        return true;
+    }
+    public String getAllInfor() {
+        return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + "$" + cost;
+    }
 }
