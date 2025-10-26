@@ -1,0 +1,8 @@
+1. After the call of swap() why does the title of these two object still remain?
+- In java, method parameters are always passed by value. For objects, this value is the reference (a copy of the address) to the object. Inside swap, we can only exchange the local copies of the references. The origin references (jungleDVD and cinderellaDVD) are not affected. 
+2. After the call of changeTitle why is the title of the JungleDVD changed?
+- The parameter disc receives a copy references to jungleDVD. Though the reference is copied, it still points to the same object in the memory. When disc.setTitle(newTitle) is called, the method modifies the internal state of the object that JungleDVD refers to.
+3. Is java pass by value of pass by references?
+- Java is always pass by value
++ For primitive (int, float, ...) the actual value is copied.
++ For objects, the value of the reference is copied. That means you can use the copied reference to modify the contents of the object, but you can not reassign the original variable to a different object inside a method.

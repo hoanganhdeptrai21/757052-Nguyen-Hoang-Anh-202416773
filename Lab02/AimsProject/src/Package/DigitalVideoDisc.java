@@ -43,4 +43,7 @@ public class DigitalVideoDisc {
     this.director = director;
     this.length = length;
 }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
