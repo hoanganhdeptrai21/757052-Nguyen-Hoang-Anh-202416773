@@ -1,0 +1,14 @@
+Suppose you try to write two constructors like this:
+
+public DVD(String title) {
+    this.title = title;
+}
+
+public DVD(String category) {
+    this.category = category;
+}
+
+
+Java will not allow this. The reason is that constructor overloading is determined solely by the method signature—that is, the number and types of parameters. Since both of these constructors take a single String, they share the exact same signature. The compiler has no way to tell whether new DVD("ABC") is intended to initialize a DVD with the title "ABC" or with the category "ABC".
+
+That said, having several constructors in one class is absolutely valid as long as their parameter lists are distinct. For example, a constructor could accept both a title and a category (DVD(String title, String category)), or perhaps a title and a length (DVD(String title, int length)). In fact, in my DigitalVideoDisc.java file, I have multiple constructors with different parameter combinations, and that works correctly because each one has a unique signature.
