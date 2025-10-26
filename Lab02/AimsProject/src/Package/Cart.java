@@ -3,16 +3,39 @@ package Package;
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-    public int count = 0;
-    public void addDigitalVideoDisc(DigitalVideoDisc disc){
-        if (count == MAX_NUMBERS_ORDERED){
-            System.out.println("The cart is almost full");
-            return;
+    public int qtyOrdered = 0;
+    public void addDigitalVideoDisc(DigitalVideoDisc disc) {
+        if (qtyOrdered < MAX_NUMBERS_ORDERED) {
+            itemsOrdered[qtyOrdered] = disc;
+            qtyOrdered++;
+            System.out.println( disc.getTitle() + " has been added to cart.");
+            if (qtyOrdered == MAX_NUMBERS_ORDERED) {
+                System.out.println("Cart is full.");
+            }
+            else if (qtyOrdered >= MAX_NUMBERS_ORDERED - 5) {
+                System.out.println("Cart is almost full.");
+            }
+        } else {
+            System.out.println("Cart is already full.");
         }
-        else{
-            itemsOrdered[count] = disc;
-            count += 1;
-            System.out.println("The disc has been added");
+    }
+    public void addDigitalVideoDisc(DigitalVideoDisc[] discList) {
+        for (DigitalVideoDisc disc : discList) {
+            if (qtyOrdered < MAX_NUMBERS_ORDERED) {
+                itemsOrdered[qtyOrdered] = disc;
+                qtyOrdered ++;
+                System.out.println( disc.getTitle() + " has been added to cart.");
+                if (qtyOrdered == MAX_NUMBERS_ORDERED) {
+                    System.out.println("Cart is full.");
+                    break;
+                }
+                else if (qtyOrdered >= MAX_NUMBERS_ORDERED - 5) {
+                    System.out.println("Cart is almost full.");
+                }
+            } else {
+                System.out.println("Cart is already full. Cannot add '" + disc.getTitle() + "'.");
+                break;
+            }
         }
     }
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
