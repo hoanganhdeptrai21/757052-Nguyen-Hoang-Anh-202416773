@@ -15,6 +15,7 @@ public class Store {
             System.out.println("Store is full. Cannot add DVD.");
         }
     }
+    
     public void removeMedia(Media media) {
         for (int i = 0; i < qtyInStore; i++) {
             if (itemsInStore.get(i).equals(media)) {
@@ -45,4 +46,7 @@ public class Store {
         }
         System.out.println("*************************************************************************************************");
     }
+    public ArrayList<Media> getItemsInStore() {
+    return itemsInStore;
+}
 }
