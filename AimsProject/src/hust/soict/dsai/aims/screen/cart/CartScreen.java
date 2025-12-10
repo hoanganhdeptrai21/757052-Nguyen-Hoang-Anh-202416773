@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.screen;
+package hust.soict.dsai.aims.screen.cart;
 
 import hust.soict.dsai.aims.cart.Cart;
 import javafx.application.Platform;
@@ -7,23 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javax.swing.*;
-import java.io.IOException;
+import javax.swing.JFrame;
 
 public class CartScreen extends JFrame {
 
-    private Cart cart;
-
     public CartScreen(Cart cart) {
-        this.cart = cart;
-
         JFXPanel fxPanel = new JFXPanel();
-        add(fxPanel);
+        this.add(fxPanel);
 
-        setTitle("Cart");
-        setSize(1024, 768);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        this.setTitle("Cart");
+        this.setSize(800, 600);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         Platform.runLater(() -> {
             try {
@@ -32,7 +27,7 @@ public class CartScreen extends JFrame {
                 loader.setController(new CartScreenController(cart));
                 Parent root = loader.load();
                 fxPanel.setScene(new Scene(root));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

@@ -1,52 +1,43 @@
 package hust.soict.dsai.aims.store;
-import java.util.ArrayList;
+
 import hust.soict.dsai.aims.media.Media;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Store {
+
     public static final int MAX_ITEMS_IN_STORE = 1000;
-    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
-    public static int qtyInStore = 0;
+
+    private List<Media> itemsInStore = new ArrayList<>();
+    private Media selectedMedia;
+
     public void addMedia(Media media) {
-        if (qtyInStore < MAX_ITEMS_IN_STORE) {
-            itemsInStore.add(media);
-            qtyInStore++;
-            System.out.println("'" + media.getTitle() + "'" + " has been added to store.");
-        } else {
-            System.out.println("Store is full. Cannot add DVD.");
+        if (itemsInStore.size() >= MAX_ITEMS_IN_STORE) {
+            System.out.println("Store is full.");
+            return;
         }
-    }
-    
-    public void removeMedia(Media media) {
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore.get(i).equals(media)) {
-                for (int j = i; j < qtyInStore - 1; j++) {
-                    itemsInStore.set(j, itemsInStore.get(j + 1));
-                }
-                itemsInStore.remove(qtyInStore - 1);
-                qtyInStore--;
-                System.out.println("'" + media.getTitle() + "'" + " has been removed from store.");
-                return;
-            }
-        }
-        System.out.println("'" + media.getTitle() + "'" + " not found in store.");
+        itemsInStore.add(media);
+        System.out.println("Added to store: " + media);
     }
 
-    public Media findMediaByTitle(String title, Store store) {
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore.get(i).getTitle().equalsIgnoreCase(title)) {
-                return itemsInStore.get(i);
-            }
+    public void removeMedia(Media media) {
+        if (itemsInStore.remove(media)) {
+            System.out.println("Removed from store: " + media);
+        } else {
+            System.out.println("Item not found in store.");
         }
-        return null; 
     }
-    public void printStore() {
-        System.out.println("**********************************************STORE**********************************************");
-        for (int i = 0; i < qtyInStore; i++) {
-            System.out.println((i + 1) + ". " + itemsInStore.get(i).getAllInfo());
-        }
-        System.out.println("*************************************************************************************************");
+
+    public List<Media> getItemsInStore() {
+        return itemsInStore;
     }
-    public ArrayList<Media> getItemsInStore() {
-    return itemsInStore;
-}
+
+    public Media getSelectedMedia() {
+        return selectedMedia;
+    }
+
+    public void setSelectedMedia(Media selectedMedia) {
+        this.selectedMedia = selectedMedia;
+    }
 }

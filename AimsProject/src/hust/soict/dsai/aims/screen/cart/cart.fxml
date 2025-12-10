@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hust.soict.dsai.aims.screen.cart.CartScreenController">
+
+    <top>
+        <Label text="CART"
+               style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-padding: 10;"
+               BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <VBox spacing="10" padding="20">
+            <children>
+
+                <TableView fx:id="tblMedia" prefHeight="400">
+                    <columns>
+                        <TableColumn fx:id="colMediaTitle" text="Title" prefWidth="250"/>
+                        <TableColumn fx:id="colMediaCategory" text="Category" prefWidth="200"/>
+                        <TableColumn fx:id="colMediaCost" text="Cost" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10">
+                    <children>
+                        <Button fx:id="btnPlay" text="Play" onAction="#btnPlayPressed"/>
+                        <Button fx:id="btnRemove" text="Remove" onAction="#btnRemovePressed"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" padding="20" alignment="CENTER_RIGHT">
+            <children>
+                <Label text="Total cost:"/>
+                <Label fx:id="lblTotalCost" text="0.00$" style="-fx-font-weight:bold"/>
+                <Button text="Place Order" onAction="#btnPlaceOrderPressed"/>
+            </children>
+        </HBox>
+    </bottom>
+
+</BorderPane>

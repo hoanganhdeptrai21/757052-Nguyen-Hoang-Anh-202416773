@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hust.soict.dsai.javafx.PainterController"
+            prefWidth="640.0"
+            prefHeight="480.0">
+    <left>
+        <VBox BorderPane.alignment="CENTER"
+              spacing="10.0"
+              maxHeight="1.7976931348623157E308">
+            <children>
+                <TitledPane text="Drawing tools" animated="false">
+                    <content>
+                        <VBox spacing="6.0">
+                            <children>
+                                <RadioButton fx:id="radioPen"
+                                             text="Pencil"
+                                             selected="true"
+                                             mnemonicParsing="false">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="toolGroup" />
+                                    </toggleGroup>
+                                </RadioButton>
+
+                                <RadioButton fx:id="radioEraser"
+                                             text="Eraser"
+                                             toggleGroup="$toolGroup"
+                                             mnemonicParsing="false" />
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+                <Button text="Clear canvas"
+                        maxWidth="1.7976931348623157E308"
+                        mnemonicParsing="false"
+                        onAction="#clearButtonPressed" />
+            </children>
+
+            <BorderPane.margin>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <center>
+        <Pane fx:id="drawingAreaPane"
+              BorderPane.alignment="CENTER"
+              style="-fx-background-color: white;"
+              onMouseDragged="#drawingAreaMouseDragged" />
+    </center>
+
+</BorderPane>

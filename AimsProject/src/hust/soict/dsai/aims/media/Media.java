@@ -1,20 +1,31 @@
 package hust.soict.dsai.aims.media;
-import java.util.Comparator;
-import hust.soict.dsai.aims.media.comparator.MediaComparatorByTitleCost;
-import hust.soict.dsai.aims.media.comparator.MediaComparatorByCostTitle;
+
+import java.util.Objects;
+
 public abstract class Media {
 
-    public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
-    public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
-    public static int nbMedia = 0;
+    private static int nbMedia = 0;
 
-    public int id;
+    protected int id;
+    protected String title;
+    protected String category;
+    protected float cost;
 
-    private String title;
+    public Media() {
+        nbMedia++;
+        this.id = nbMedia;
+    }
 
-    private String category;
+    public Media(String title) {
+        this();
+        this.title = title;
+    }
 
-    private float cost;
+    public Media(String title, String category, float cost) {
+        this(title);
+        this.category = category;
+        this.cost = cost;
+    }
 
     public int getId() {
         return id;
@@ -31,33 +42,35 @@ public abstract class Media {
     public float getCost() {
         return cost;
     }
-    public abstract String getAllInfo();
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setTitle(String title) {
         this.title = title;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
+
     public void setCost(float cost) {
         this.cost = cost;
     }
-    public abstract void play();
+
+    @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Media) {
-            Media other = (Media) obj;
-            return this.title == other.title;
-        }
-        return false;
+        if (this == obj) return true;
+        if (!(obj instanceof Media)) return false;
+        Media other = (Media) obj;
+        return Objects.equals(this.title, other.title);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
+
+    @Override
     public String toString() {
-    return this.getClass().getSimpleName()
-            + " - " + this.getTitle()
-            + " - " + this.getCategory()
-            + " - " + this.getCost() + "$";
-}
+        return String.format("%s - %s - %s - %.2f$",
+                getClass().getSimpleName(), title, category, cost);
+    }
 }
